@@ -1,6 +1,7 @@
 /**
  * SortDriver.java: by Koushik Ramakrishnan and Yonathan Shlevich
  */
+
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.io.IOException;
@@ -35,12 +36,41 @@ public class SortDriver {
                     intArr.add(Integer.parseInt(v)); //converts the string objects to integer arraylist
                 }
             }
-            
+            int[] Iarr = new int[intArr.size()]; 
+            for(int i = 0 ; i < intArr.size(); i++){
+                Iarr[i] = intArr.get(i);
+            }
+            Sorter toSort = new Sorter();
+            System.out.println("selection-sort (s) merge-sort (m) heap-sort (h) quick-sort-fp (q) \n quick-sort-rp (r)");
+            System.out.print("Enter the algorithm: ");
+            char choice = scan.next().charAt(0);
+            if(choice == 's'){
+                toSort.selectionSort(Iarr);
+                System.out.print("#Selection-sort comparisons: ");
+                toSort.getCounter();
+            } else if(choice == 'm'){
+                toSort.mergeSort(Iarr,Iarr.length);
+                System.out.print("#Merge-sort comparisons: ");
+                toSort.getCounter();
+            } else if(choice == 'h'){
+                toSort.heapSort(Iarr, Iarr.length);
+                System.out.print("#Heap-sort comparisons: ");
+                toSort.getCounter();
+            } else if(choice == 'q'){
+                toSort.quickSort(Iarr, 0, Iarr.length);
+                System.out.print("#Quick-sort-fp comparisons: ");
+                toSort.getCounter();
+            } else if(choice == 'r'){
+                toSort.quickSort(Iarr, 0, Iarr.length);
+                System.out.print("#Quick-sort-rp comparisons: ");
+                toSort.getCounter();
+            }
            
         } //Try
         catch(IOException i){
             i.printStackTrace();
 
         }  //Catch
-    } 
+    }
+
 }
