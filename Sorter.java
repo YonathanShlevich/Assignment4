@@ -10,8 +10,9 @@ public class Sorter {
     public void selectionSort(int[] nums){
         for(int i = 0; i < nums.length - 1; i++){
             int min = i;
-            counter++;
+            //counter++;
             for(int j = i + 1; j < nums.length; j++){
+                counter++;
                 if(nums[j] < nums[min]){
                     min = j;
                 }
@@ -99,8 +100,9 @@ public class Sorter {
         int maxChild;
         int rightChild;
         int leftChild;
-        leftChild = root * 2 + 1 ;
-        rightChild = root * 2 + 2 ;
+        maxChild = bottom; //Added
+        leftChild = bottom * 2 + 1 ; //From root->bottom
+        rightChild = bottom * 2 + 2 ; //From root->bottom
         if (leftChild <= bottom){
             if (leftChild == bottom)
                 maxChild = leftChild;
@@ -124,24 +126,24 @@ public class Sorter {
     public void quickSort(int[] nums, int first, int last){
         if ( first < last ){
             int divide = split(nums, first, last);
+            counter++;
             quickSort(nums, first, divide - 1);
+            counter++;
             quickSort(nums, divide + 1, last);
             }
     } 
-    private int split(int[] nums, int b, int e){
-        int v = nums[e] - 1;
-        long pivot = nums[v];
-        System.out.println("Hola");
-        int i = b --;
-
-        for(int j = b; j < e; j++){
+    private int split(int[] nums, int first, int last){
+        long pivot = nums[last];
+        int i = (first - 1);
+        for(int j = first; j < last; j++){
+            counter++;
             if(nums[j] <= pivot){
                 i++;
 
                 swap(nums, i, j);
             }
         }
-        swap(nums, i + 1, e);
+        swap(nums, i + 1, last);
         return i + 1;
     } 
     
