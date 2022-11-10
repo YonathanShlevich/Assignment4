@@ -80,8 +80,7 @@ public class Sorter {
 
     //Heap Sort
     public void heapSort(int[] nums, int numValues){
-        int index;
-        
+        int index; 
         for (index = numValues/2 - 1; index >= 0; index--){
             counter++;
             ReheapDown(nums, index ,numValues - 1);
@@ -104,13 +103,18 @@ public class Sorter {
         leftChild = bottom * 2 + 1 ; //From root->bottom
         rightChild = bottom * 2 + 2 ; //From root->bottom
         if (leftChild <= bottom){
-            if (leftChild == bottom)
+            if (leftChild == bottom){
+                counter++;
                 maxChild = leftChild;
+            }
             else{
-                if (nums[leftChild] <= nums [rightChild])
+                if (nums[leftChild] <= nums [rightChild]){
+                    counter++;
                     maxChild = rightChild ;
-                else
+                }else{
+                counter++;
                     maxChild = leftChild ;
+                }
             }
             if (nums[ root ] < nums[maxChild]){
                 counter++;
@@ -124,6 +128,7 @@ public class Sorter {
 
     //Quicksort 
     public void quickSort(int[] nums, int first, int last){
+        last = last - 1;
         if ( first < last ){
             int divide = split(nums, first, last);
             counter++;
