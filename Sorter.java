@@ -1,3 +1,4 @@
+import java.util.Random;
 public class Sorter {
 
     long counter = 0;
@@ -77,56 +78,90 @@ public class Sorter {
         nums[index1] = nums[index2];
         nums[index2] = temp;
     }
-
+    public void swapHeap(int[] nums, int index1, int index2){
+        //counter++;
+        int temp = nums[index1];
+        nums[index1] = nums[index2];
+        nums[index2] = temp;
+    }
+    /*
     //Heap Sort
     public void heapSort(int[] nums, int numValues){
         int index; 
         for (index = numValues/2 - 1; index >= 0; index--){
-            counter++;
             ReheapDown(nums, index ,numValues - 1);
         }
         for (index = numValues - 1; index >= 1; index--){
-            counter++;
-            swap(nums, nums [0] , nums[index]);
-            counter++;
+            //swap(nums, nums [0] , nums[index]);
+            swap(nums, 0, index);
             ReheapDown(nums, 0, index - 1);
         }
     }
 
     //Helper Heap Sort
     void ReheapDown(int[] nums, int root, int bottom){
-        counter++;
+        //counter++;
         int maxChild;
         int rightChild;
         int leftChild;
-        maxChild = bottom; //Added
-        leftChild = bottom * 2 + 1 ; //From root->bottom
-        rightChild = bottom * 2 + 2 ; //From root->bottom
+        leftChild = root * 2 + 1 ; 
+        rightChild = root * 2 + 2 ; 
         if (leftChild <= bottom){
             if (leftChild == bottom){
-                counter++;
                 maxChild = leftChild;
             }
             else{
                 if (nums[leftChild] <= nums [rightChild]){
-                    counter++;
-                    maxChild = rightChild ;
+                    maxChild = rightChild;
                 }else{
-                counter++;
-                    maxChild = leftChild ;
+                    maxChild = leftChild;
                 }
+                counter++;
             }
-            if (nums[ root ] < nums[maxChild]){
+            if (nums[root] < nums[maxChild]){
                 counter++;
                 swap(nums, nums[root], nums[maxChild]);
-                counter++;
+                //swap(nums, root, maxChild);
                 ReheapDown(nums, maxChild, bottom);
             }
         }
 
     }
+*/
+    public void heapSort(int[] array, int length){
+        int index;
+        for(index = (length/2)-1; index >= 0; index--){
+            heapdown(array, index, length-1);
+        }
+        for(index = length-1; index >= 1; index--){
+            swapHeap(array,index,0);
+            heapdown(array, 0, index-1);
+        }
+    }
 
-    //Quicksort 
+    public void heapdown(int[] array, int root, int bottom){
+        int max, left, right;
+        left = root * 2 + 1;
+        right = root * 2 + 2;
+        if(left <= bottom){
+            if(left == bottom){
+                max = left;
+            }else{
+                if(array[left] <= array[right]){
+                    max = right ;
+                }else{
+                    max = left ;
+                }
+                counter++;
+            }
+            if(array[ root ] < array[max]){
+                counter++;
+                swapHeap(array, root, max);
+                heapdown(array, max, bottom );
+            }
+        }
+    }
+
     public void quickSort(int[] nums, int first, int last){
         last = last - 1;
         if ( first < last ){
@@ -150,6 +185,35 @@ public class Sorter {
         }
         swap(nums, i + 1, last);
         return i + 1;
-    } 
-    
+    }     
+    public void quicksortSecRan(int[] nums, int low, int high){
+        if(low < high){
+            counter += 1;
+            int partioned = splitRan(nums, low, high);
+            quicksortSecRan(nums, low, partioned);
+            quicksortSecRan(nums, partioned + 1, high);
+        }
+    }
+    private int splitRan(int[] array, int low, int high){
+        int pivNum = (int) (Math.random()*(high-low))+low;
+        int pivot = array[pivNum];
+        int left = low - 1, right = high + 1;
+        while(true){
+            do{
+                counter++;
+                left++;
+            }while(array[left] < pivot);
+            do{
+                counter++;
+                right--;
+            }while(array[right] > pivot);
+            
+            if(left >= right){
+                counter++;
+                return right;
+            }
+            swap(array, left, right);
+        }
+    }
+
 }

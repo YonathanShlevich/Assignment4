@@ -57,11 +57,11 @@ public class SortDriver {
                 System.out.print("#Heap-sort comparisons: ");
                 toSort.getCounter();
             } else if(choice == 'q'){
-                toSort.quickSort(Iarr, 0, Iarr.length);
+                toSort.quickSort(Iarr, 0, Iarr.length - 1);
                 System.out.print("#Quick-sort-fp comparisons: ");
                 toSort.getCounter();
             } else if(choice == 'r'){
-                toSort.quickSort(Iarr, 0, Iarr.length);
+                toSort.quicksortSecRan(Iarr, 0, Iarr.length - 1);
                 System.out.print("#Quick-sort-rp comparisons: ");
                 toSort.getCounter();
             }
