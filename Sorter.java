@@ -1,4 +1,3 @@
-import java.util.Random;
 public class Sorter {
 
     long counter = 0;

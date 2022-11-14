@@ -41,31 +41,64 @@ public class SortDriver {
                 Iarr[i] = intArr.get(i);
             }
             Sorter toSort = new Sorter();
-            System.out.println("selection-sort (s) merge-sort (m) heap-sort (h) quick-sort-fp (q) \n quick-sort-rp (r)");
-            System.out.print("Enter the algorithm: ");
+            //System.out.println("selection-sort (s) merge-sort (m) heap-sort (h) quick-sort-fp (q) \n quick-sort-rp (r)");
+            System.out.print("Create a new random array?(y/n): ");
             char choice = scan.next().charAt(0);
-            if(choice == 's'){
-                toSort.selectionSort(Iarr);
-                System.out.print("#Selection-sort comparisons: ");
-                toSort.getCounter();
-            } else if(choice == 'm'){
-                toSort.mergeSort(Iarr,Iarr.length);
-                System.out.print("#Merge-sort comparisons: ");
-                toSort.getCounter();
-            } else if(choice == 'h'){
-                toSort.heapSort(Iarr, Iarr.length);
-                System.out.print("#Heap-sort comparisons: ");
-                toSort.getCounter();
-            } else if(choice == 'q'){
-                toSort.quickSort(Iarr, 0, Iarr.length - 1);
-                System.out.print("#Quick-sort-fp comparisons: ");
-                toSort.getCounter();
-            } else if(choice == 'r'){
-                toSort.quicksortSecRan(Iarr, 0, Iarr.length - 1);
-                System.out.print("#Quick-sort-rp comparisons: ");
-                toSort.getCounter();
+            if(choice == 'n'){
+                System.out.print("Enter the algorithm: ");
+                choice = scan.next().charAt(0);
+                if(choice == 's'){
+                    toSort.selectionSort(Iarr);
+                    System.out.print("#Selection-sort comparisons: ");
+                    toSort.getCounter();
+                } else if(choice == 'm'){
+                    toSort.mergeSort(Iarr,Iarr.length);
+                    System.out.print("#Merge-sort comparisons: ");
+                    toSort.getCounter();
+                } else if(choice == 'h'){
+                    toSort.heapSort(Iarr, Iarr.length);
+                    System.out.print("#Heap-sort comparisons: ");
+                    toSort.getCounter();
+                } else if(choice == 'q'){
+                    toSort.quickSort(Iarr, 0, Iarr.length - 1);
+                    System.out.print("#Quick-sort-fp comparisons: ");
+                    toSort.getCounter();
+                } else if(choice == 'r'){
+                    toSort.quicksortSecRan(Iarr, 0, Iarr.length - 1);
+                    System.out.print("#Quick-sort-rp comparisons: ");
+                    toSort.getCounter();
+                }
+            } else if( choice == 'y'){
+                System.out.print("Input the number of values: ");
+                int inputLength = scan.nextInt();   
+                int[] inputArray = new int[inputLength];
+                for(int i = 0; i < inputLength; i++){
+                    inputArray[i] = (int)(Math.random()*(inputLength));
+                }
+                System.out.print("Enter the algorithm: ");
+                choice = scan.next().charAt(0);
+                if(choice == 's'){
+                    toSort.selectionSort(inputArray);
+                    System.out.print("#Selection-sort comparisons: ");
+                    toSort.getCounter();
+                } else if(choice == 'm'){
+                    toSort.mergeSort(inputArray,inputArray.length);
+                    System.out.print("#Merge-sort comparisons: ");
+                    toSort.getCounter();
+                } else if(choice == 'h'){
+                    toSort.heapSort(inputArray, inputArray.length);
+                    System.out.print("#Heap-sort comparisons: ");
+                    toSort.getCounter();
+                } else if(choice == 'q'){
+                    toSort.quickSort(inputArray, 0, inputArray.length - 1);
+                    System.out.print("#Quick-sort-fp comparisons: ");
+                    toSort.getCounter();
+                } else if(choice == 'r'){
+                    toSort.quicksortSecRan(inputArray, 0, inputArray.length - 1);
+                    System.out.print("#Quick-sort-rp comparisons: ");
+                    toSort.getCounter();
+                }
             }
-           
         } //Try
         catch(IOException i){
             i.printStackTrace();
